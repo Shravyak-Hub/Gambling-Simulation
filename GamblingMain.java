@@ -17,12 +17,17 @@ public class GamblingMain {
     public void winOrLose() {
 
         Random random = new Random();
-        int winOrLose = random.nextInt(2) + 1;
-        if(winOrLose == WIN) {
-            System.out.println("Gambler won $1");
-        } else {
-            System.out.println("Gambler lost $1");
+        int amount = STAKE, winOrLose = 0;
+        while(amount < 150 && amount > 50) {
+            winOrLose = random.nextInt(2) + 1;
+            if (winOrLose == WIN) {
+                amount += BET;
+            } else {
+                amount -= BET;
+            }
         }
+
+        System.out.println("Gambler resigned with amount " + amount);
 
     }
 
