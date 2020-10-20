@@ -6,7 +6,7 @@ public class GamblingMain {
     public static final int BET = 1;
     public static final int WIN = 1;
     public static final int LOSE = 2;
-    int totalAmount = 0;
+    int totalAmount = 0, daysWon = 0, daysLost = 0;
 
     public static void main(String[]  args) {
 
@@ -32,6 +32,14 @@ public class GamblingMain {
 
             totalAmount += amount;
 
+            if(amount == 50) {
+                System.out.println("Gambler won " + amount);
+                daysWon++;
+            } else {
+                System.out.println("Gambler lost " + amount);
+                daysLost++;
+            }
+
             System.out.println("Gambler resigned day " + day + " with amount " + totalAmount);
             day++;
             amount = 0;
@@ -47,6 +55,8 @@ public class GamblingMain {
             System.out.println("After 20 days, player lost " + totalAmount);
 
         }
+        System.out.println("Total days lost " + daysLost);
+        System.out.println("Total days won " + daysWon);
     }
 
 }
