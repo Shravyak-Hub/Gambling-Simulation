@@ -6,29 +6,55 @@ public class GamblingMain {
     public static final int BET = 1;
     public static final int WIN = 1;
     public static final int LOSE = 2;
+    int totalAmount = 0;
 
     public static void main(String[]  args) {
 
         GamblingMain gamblingMain = new GamblingMain();
         gamblingMain.winOrLose();
+        gamblingMain.totalWinOrLosses();
 
     }
 
     public void winOrLose() {
 
         Random random = new Random();
-        int amount = STAKE, winOrLose = 0;
-        while(amount < 150 && amount > 50) {
-            winOrLose = random.nextInt(2) + 1;
-            if (winOrLose == WIN) {
-                amount += BET;
-            } else {
-                amount -= BET;
+        int amount = 0, winOrLose = 0, day = 1, daysWon = 0, daysLost = 0;
+        while(day <= 20) {
+            while (amount < 50 && amount > -50) {
+                winOrLose = random.nextInt(2) + 1;
+                if (winOrLose == WIN) {
+                    amount += BET;
+                } else {
+                    amount -= BET;
+                }
             }
+
+            totalAmount += amount;
+
+            if(amount == 50) {
+                System.out.println("Gambler won " + amount);
+                daysWon++;
+            } else {
+                System.out.println("Gambler lost " + amount);
+                daysLost++;
+            }
+
+            System.out.println("Gambler resigned day " + day + " with amount " + totalAmount);
+            day++;
+            amount = 0;
+
         }
 
-        System.out.println("Gambler resigned with amount " + amount);
+    }
 
+    public void totalWinOrLosses() {
+        if (totalAmount > 0) {
+            System.out.println("After 20 days, player won " + totalAmount);
+        } else {
+            System.out.println("After 20 days, player lost " + totalAmount);
+
+        }
     }
 
 }
