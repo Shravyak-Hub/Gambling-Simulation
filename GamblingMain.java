@@ -19,7 +19,7 @@ public class GamblingMain {
     public void winOrLose() {
 
         Random random = new Random();
-        int amount = 0, winOrLose = 0, day = 1, daysWon = 0, daysLost = 0;
+        int amount = 0, winOrLose = 0, day = 1;
         while(day <= 20) {
             while (amount < 50 && amount > -50) {
                 winOrLose = random.nextInt(2) + 1;
@@ -31,14 +31,6 @@ public class GamblingMain {
             }
 
             totalAmount += amount;
-
-            if(amount == 50) {
-                System.out.println("Gambler won " + amount);
-                daysWon++;
-            } else {
-                System.out.println("Gambler lost " + amount);
-                daysLost++;
-            }
 
             System.out.println("Gambler resigned day " + day + " with amount " + totalAmount);
             day++;
