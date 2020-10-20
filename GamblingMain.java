@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
 
 public class GamblingMain {
@@ -7,12 +9,14 @@ public class GamblingMain {
     public static final int WIN = 1;
     public static final int LOSE = 2;
     int totalAmount = 0, daysWon = 0, daysLost = 0;
+    ArrayList winsOrLosses = new ArrayList();
 
     public static void main(String[]  args) {
 
         GamblingMain gamblingMain = new GamblingMain();
         gamblingMain.winOrLose();
         gamblingMain.totalWinOrLosses();
+        gamblingMain.luckyOrUnluckyDay();
 
     }
 
@@ -41,6 +45,7 @@ public class GamblingMain {
             }
 
             System.out.println("Gambler resigned day " + day + " with amount " + totalAmount);
+            winsOrLosses.add(totalAmount);
             day++;
             amount = 0;
 
@@ -57,6 +62,14 @@ public class GamblingMain {
         }
         System.out.println("Total days lost " + daysLost);
         System.out.println("Total days won " + daysWon);
+    }
+
+    public void luckyOrUnluckyDay() {
+        int luckyDay = winsOrLosses.indexOf(Collections.max(winsOrLosses)) + 1;
+        int unluckyDay = winsOrLosses.indexOf(Collections.min(winsOrLosses)) + 1;
+        System.out.println("Lucky day is day " + luckyDay);
+        System.out.println("Unlucky day is day " + unluckyDay);
+
     }
 
 }
